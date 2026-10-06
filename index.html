@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saúde Vida Sudoeste — Cuidando de você, próximo de você</title>
+<meta name="description" content="Cartão de benefícios em saúde em Vitória da Conquista: consulta clínica por R$&nbsp;80, descontos em exames, especialistas e fisioterapia para você e sua família.">
+<meta name="theme-color" content="#050B3D">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: {
+    marinho: { 950: '#030727', 900: '#050B3D', 800: '#0A1250', 700: '#141C5C' },
+    coral: { 400: '#FF8A8A', 500: '#E86F6F', 700: '#BF3F44', 800: '#A63238' },
+    ceu: '#8FD3FF', rosa: '#FDF0F0', papel: '#F6F7FB',
+    tinta: { DEFAULT: '#1F2937', suave: '#4B5563' }, zap: '#128C4A'
+  },
+  fontFamily: { display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'], sans: ['Figtree', 'system-ui', 'sans-serif'] }
+}}}
+</script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 96px; scrollbar-gutter: stable; }
+  body { font-family: Figtree, system-ui, sans-serif; color: #1F2937; background: #fff; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  h1, h2, h3, .font-display { font-family: "Bricolage Grotesque", system-ui, sans-serif; letter-spacing: -0.025em; text-wrap: balance; }
+  p { text-wrap: pretty; }
+  :focus-visible { outline: 3px solid #E86F6F; outline-offset: 3px; border-radius: 8px; }
+  .on-dark :focus-visible { outline-color: #fff; }
+  .skip { position: absolute; left: 16px; top: -60px; z-index: 100; background: #fff; color: #050B3D; padding: 12px 16px; border-radius: 8px; font-weight: 600; }
+  .skip:focus { top: 12px; }
+
+  /* ---------- revelar ao rolar ---------- */
+  .js .rv { opacity: 0; transform: translateY(32px) scale(.98); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
+  .js .rv.in { opacity: 1; transform: none; }
+
+  /* ---------- hero ---------- */
+  .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .55; will-change: transform; }
+  @keyframes deriva { 0%,100% { transform: translate(0,0) scale(1) } 50% { transform: translate(60px,-40px) scale(1.15) } }
+  @keyframes gira { to { transform: rotate(360deg) } }
+  @keyframes flutua { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-14px) } }
+  @keyframes bate { 0%,100% { transform: scale(1) } 12% { transform: scale(1.22) } 24% { transform: scale(1) } 36% { transform: scale(1.16) } 48% { transform: scale(1) } }
+  @keyframes sobe-palavra { from { transform: translateY(110%) rotate(4deg); opacity: 0 } to { transform: none; opacity: 1 } }
+  @keyframes pulso { 0% { box-shadow: 0 0 0 0 rgba(18,140,74,.6) } 100% { box-shadow: 0 0 0 22px rgba(18,140,74,0) } }
+  @keyframes marquee { to { transform: translateX(-50%) } }
+  @keyframes brilho { to { background-position: 200% center } }
+  .blob-a { background: #E86F6F; width: 520px; height: 520px; top: -140px; right: -80px; animation: deriva 14s ease-in-out infinite; }
+  .blob-b { background: #3A6BFF; width: 480px; height: 480px; bottom: -200px; left: -120px; animation: deriva 18s ease-in-out infinite reverse; opacity: .4; }
+  .anel { position: absolute; border-radius: 50%; border: 1.5px dashed rgba(255,255,255,.18); animation: gira 60s linear infinite; }
+  .palavra { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .12em; margin-bottom: -.12em; }
+  .palavra > span { display: inline-block; animation: sobe-palavra .9s cubic-bezier(.2,.8,.2,1) both; animation-delay: var(--d, 0s); }
+  .flutua { animation: flutua 5s ease-in-out infinite; animation-delay: var(--d, 0s); }
+  .coracao { animation: bate 2.2s ease-in-out infinite; transform-origin: center; }
+  .glass { background: rgba(255,255,255,.12); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,.22); }
+  .zap-pulso { animation: pulso 2.2s ease-out infinite; }
+
+  .cartao { aspect-ratio: 1.586; background: linear-gradient(135deg, #1F2A78 0%, #0A1252 50%, #050B3D 100%); box-shadow: 0 40px 80px -24px rgba(0,0,0,.7), inset 0 0 0 1px rgba(255,255,255,.18); }
+  .cartao::before { content:""; position:absolute; right:-18%; top:-30%; width:80%; aspect-ratio:1; border-radius:50%; border: 28px solid rgba(255,255,255,.07); }
+  .cartao::after { content:""; position:absolute; right:-6%; top:-16%; width:56%; aspect-ratio:1; border-radius:50%; border: 14px solid rgba(232,111,111,.35); }
+  .tilt { transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) rotate(-5deg); transition: transform .15s ease-out; }
+  .brilho-texto { background: linear-gradient(100deg, #E86F6F 20%, #FFC2B8 40%, #E86F6F 60%); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: brilho 4s linear infinite; }
+
+  /* ---------- marquee ---------- */
+  .marquee-trilho { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+  .marquee:hover .marquee-trilho { animation-play-state: paused; }
+  .marquee-mask { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%); }
+  .marquee-rev { animation-direction: reverse; }
+
+  /* ---------- bento ---------- */
+  .tile { position: relative; overflow: hidden; text-align: left; transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s; }
+  .tile:hover { transform: translateY(-6px) rotate(-.4deg); box-shadow: 0 30px 50px -24px rgba(5,11,61,.45); }
+  .tile .seta { transition: transform .35s, background-color .35s; }
+  .tile:hover .seta { transform: rotate(45deg) scale(1.1); background: #E86F6F; color: #050B3D; }
+  .tile .num { font-variant-numeric: tabular-nums; }
+  .tile::after { content:""; position:absolute; right:-40px; bottom:-40px; width:140px; height:140px; border-radius:50%; border: 18px solid currentColor; opacity: .06; transition: transform .6s; }
+  .tile:hover::after { transform: scale(1.5); }
+
+  dialog { border: 0; padding: 0; background: transparent; max-width: 100vw; max-height: 100dvh; }
+  dialog::backdrop { background: rgba(3,7,39,.7); backdrop-filter: blur(6px); }
+  dialog[open] .painel { animation: abre .45s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes abre { from { opacity: 0; transform: translateY(40px) scale(.96) } to { opacity: 1; transform: none } }
+  .lista-colunas { columns: 1; column-gap: 32px; } @media (min-width: 640px) { .lista-colunas { columns: 2; } }
+  .lista-colunas li { break-inside: avoid; }
+
+  /* ---------- vantagens ---------- */
+  .riscado { position: relative; display: inline-block; }
+  .riscado::after { content:""; position:absolute; left:-4%; right:-4%; top:52%; height: .09em; background:#E86F6F; transform: scaleX(1); transform-origin: left; transition: transform .8s cubic-bezier(.7,0,.2,1) .5s; border-radius: 9px; }
+  .js .rv:not(.in) .riscado::after { transform: scaleX(0); }
+
+  /* ---------- planos ---------- */
+  .ciclo[aria-pressed=true] { background: #050B3D; color: #fff; }
+  .ciclo[aria-pressed=false] { color: #050B3D; }
+  .plano { transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s, opacity .8s; }
+  .plano:hover { transform: translateY(-8px); box-shadow: 0 40px 70px -30px rgba(5,11,61,.55); }
+  .borda-viva { position: relative; background: conic-gradient(from var(--a, 0deg), #E86F6F, #8FD3FF, #E86F6F, #3A6BFF, #E86F6F); animation: gira-borda 6s linear infinite; padding: 2px; }
+  @property --a { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+  @keyframes gira-borda { to { --a: 360deg } }
+
+  .btn { transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, background-color .25s, color .25s; }
+  .btn:hover { transform: translateY(-3px); }
+  .btn:active { transform: translateY(0) scale(.98); }
+
+  #topo-btn { opacity: 0; transform: translateY(16px) scale(.85); pointer-events: none; visibility: hidden; transition: opacity .35s, transform .35s cubic-bezier(.2,.8,.2,1), visibility .35s, background-color .25s; }
+  #topo-btn.ativo { opacity: 1; transform: none; pointer-events: auto; visibility: visible; }
+  #topo-btn:hover { background: #E86F6F; color: #050B3D; transform: translateY(-4px); }
+  #topo-btn:hover #topo-arco { stroke: #050B3D; }
+  #topo-btn i { transition: transform .3s; } #topo-btn:hover i { transform: translateY(-2px); }
+
+  /* ---------- preloader ---------- */
+  .js:not(.pronto) { overflow: hidden; }
+  .js:not(.pronto) .palavra > span { animation-play-state: paused; }
+  #pre { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; color: #fff; }
+  #pre.fim { display: none; }
+  .pre-top, .pre-bot { position: absolute; left: 0; right: 0; height: 50.5%; background: #030727; transition: transform 1s cubic-bezier(.76,0,.18,1); }
+  .pre-top { top: 0; } .pre-bot { bottom: 0; }
+  .pre-top::after, .pre-bot::after { content: ""; position: absolute; left: 0; right: 0; height: 2px; background: #E86F6F; opacity: 0; transition: opacity .3s; }#pre.sai .pre-top::after, #pre.sai .pre-bot::after { opacity: 1; }
+  .pre-top::after { bottom: 0; } .pre-bot::after { top: 0; }
+  #pre.sai .pre-top { transform: translateY(-101%); } #pre.sai .pre-bot { transform: translateY(101%); }
+  .pre-centro { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 24px; transition: opacity .4s, transform .6s cubic-bezier(.4,0,.2,1); }
+  #pre.sai .pre-centro { opacity: 0; transform: scale(.92) translateY(-10px); }
+  .pre-logo { position: relative; width: 132px; height: 132px; display: grid; place-items: center; animation: pre-entra .9s cubic-bezier(.2,.8,.2,1) both; }
+  .pre-img { position: relative; border-radius: 50%; width: 84px; height: 84px; animation: bate 2.4s ease-in-out infinite; }
+  .pre-anel { position: absolute; inset: 0; width: 100%; height: 100%; }
+  #pre-arco { transition: stroke-dashoffset .25s linear; }
+  .pre-glow { position: absolute; inset: -40px; border-radius: 50%; background: radial-gradient(circle, rgba(232,111,111,.35), transparent 65%); animation: pre-respira 2.6s ease-in-out infinite; }
+  .pre-nome { margin-top: 28px; font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 1.5rem; letter-spacing: -.02em; animation: pre-sobe .8s .25s cubic-bezier(.2,.8,.2,1) both; }
+  .pre-nome span { color: #E86F6F; }
+  .pre-lema { margin-top: 6px; font-size: .95rem; color: rgba(255,255,255,.65); animation: pre-sobe .8s .4s cubic-bezier(.2,.8,.2,1) both; }
+  .pre-trilho { margin-top: 28px; width: min(220px, 60vw); height: 3px; border-radius: 3px; background: rgba(255,255,255,.12); overflow: hidden; animation: pre-sobe .8s .55s both; }
+  .pre-trilho i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, #E86F6F, #FFB3A8); transform: scaleX(0); transform-origin: left; transition: transform .25s linear; }
+  .pre-pct { margin-top: 10px; font-size: .8rem; font-variant-numeric: tabular-nums; color: rgba(255,255,255,.55); animation: pre-sobe .8s .6s both; }
+  @keyframes pre-entra { from { opacity: 0; transform: scale(.7) } to { opacity: 1; transform: none } }
+  @keyframes pre-sobe { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
+  @keyframes pre-respira { 0%,100% { opacity: .6; transform: scale(.9) } 50% { opacity: 1; transform: scale(1.15) } }
+  #progresso { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 90; background: linear-gradient(90deg, #E86F6F, #8FD3FF); transform: scaleX(0); transform-origin: left; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .js .rv { opacity: 1 !important; transform: none !important; }
+    .riscado::after { transform: scaleX(1) !important; }
+    .borda-viva { background: #E86F6F; }
+  }
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<noscript><style>#pre{display:none!important}</style></noscript>
+
+<!-- ============ PRELOADER ============ -->
+<div id="pre" role="status" aria-live="polite" aria-label="Carregando Saúde Vida Sudoeste">
+  <div class="pre-top"></div><div class="pre-bot"></div>
+  <div class="pre-centro">
+    <div class="pre-logo">
+      <span class="pre-glow" aria-hidden="true"></span>
+      <svg class="pre-anel" viewBox="0 0 120 120" aria-hidden="true">
+        <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="2"/>
+        <circle id="pre-arco" cx="60" cy="60" r="54" fill="none" stroke="#E86F6F" stroke-width="3" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="339.3" transform="rotate(-90 60 60)"/>
+      </svg>
+      <img src="assets/logo.png" alt="" width="84" height="84" class="pre-img">
+    </div>
+    <p class="pre-nome">Saúde Vida <span>Sudoeste</span></p>
+    <p class="pre-lema">Cuidando de você, próximo de você.</p>
+    <div class="pre-trilho" aria-hidden="true"><i id="pre-barra"></i></div>
+    <p class="pre-pct"><span id="pre-pct">0</span>%</p>
+  </div>
+</div>
+<div id="progresso" aria-hidden="true"></div>
+<a href="#conteudo" class="skip">Ir para o conteúdo</a>
+
+<!-- ============ HEADER (pílula flutuante) ============ -->
+<header id="topo" class="fixed top-3 sm:top-4 inset-x-0 z-50 px-3 sm:px-6 transition-transform duration-500">
+  <div class="on-dark mx-auto max-w-6xl rounded-full bg-marinho-900/80 backdrop-blur-xl border border-white/15 text-white pl-3 pr-2 h-14 sm:h-16 flex items-center justify-between gap-3 shadow-[0_20px_40px_-20px_rgba(0,0,0,.6)]">
+    <a href="#" class="flex items-center gap-3 shrink-0" aria-label="Saúde Vida Sudoeste — início">
+      <img src="assets/logo.png" alt="" width="40" height="40" class="h-10 w-10 rounded-full">
+      <span class="font-display font-bold text-lg leading-none hidden sm:block">Saúde Vida <span class="text-coral-500">Sudoeste</span></span>
+    </a>
+    <nav aria-label="Principal" class="hidden lg:flex items-center gap-1 text-[15px] font-medium">
+      <a class="px-4 py-2 rounded-full hover:bg-white/10 transition-colors" href="#sobre">Sobre</a>
+      <a class="px-4 py-2 rounded-full hover:bg-white/10 transition-colors" href="#servicos">Serviços</a>
+      <a class="px-4 py-2 rounded-full hover:bg-white/10 transition-colors" href="#vantagens">Vantagens</a>
+      <a class="px-4 py-2 rounded-full hover:bg-white/10 transition-colors" href="#planos">Planos</a>
+      <a class="px-4 py-2 rounded-full hover:bg-white/10 transition-colors inline-flex items-center gap-1.5" href="https://saudevidasudoeste.tenex.com.br/carteira-virtual/" target="_blank" rel="noopener"><i data-lucide="credit-card" class="h-4 w-4" aria-hidden="true"></i>Minha Carteirinha</a>
+    </nav>
+    <div class="flex items-center gap-1.5">
+      <a href="#planos" class="btn inline-flex items-center justify-center min-h-11 px-5 sm:px-6 rounded-full bg-coral-500 hover:bg-coral-400 text-marinho-900 font-bold text-[15px]">Assine agora</a>
+      <button id="menu-btn" class="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-full hover:bg-white/10" aria-expanded="false" aria-controls="menu-mobile" aria-label="Abrir menu"><i data-lucide="menu" class="h-6 w-6" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <nav id="menu-mobile" aria-label="Principal (celular)" class="on-dark lg:hidden hidden mt-2 mx-auto max-w-6xl rounded-3xl bg-marinho-900/95 backdrop-blur-xl border border-white/15 text-white">
+    <ul class="p-3 text-lg font-display font-semibold">
+      <li><a class="block px-4 py-3.5 rounded-2xl hover:bg-white/10" href="#sobre">Sobre</a></li>
+      <li><a class="block px-4 py-3.5 rounded-2xl hover:bg-white/10" href="#servicos">Serviços</a></li>
+      <li><a class="block px-4 py-3.5 rounded-2xl hover:bg-white/10" href="#vantagens">Vantagens</a></li>
+      <li><a class="block px-4 py-3.5 rounded-2xl hover:bg-white/10" href="#planos">Planos</a></li>
+      <li><a class="block px-4 py-3.5 rounded-2xl hover:bg-white/10" href="https://saudevidasudoeste.tenex.com.br/carteira-virtual/" target="_blank" rel="noopener">Minha Carteirinha</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="conteudo">
+
+<!-- ============ HERO ============ -->
+<section class="hero relative overflow-hidden bg-marinho-950 text-white on-dark">
+  <div class="blob blob-a" aria-hidden="true"></div>
+  <div class="blob blob-b" aria-hidden="true"></div>
+  <div class="anel w-[900px] h-[900px] -right-[300px] top-[-120px] hidden md:block" aria-hidden="true"></div>
+  <div class="anel w-[620px] h-[620px] -right-[160px] top-[20px] hidden md:block" style="animation-direction: reverse; animation-duration: 45s" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-16 lg:pt-40 lg:pb-24 grid lg:grid-cols-[1.1fr_.9fr] gap-14 items-center">
+    <div>
+      <p class="rv inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm font-semibold"><span class="relative flex h-2.5 w-2.5"><span class="absolute inline-flex h-full w-full rounded-full bg-coral-500 opacity-75 animate-ping"></span><span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-coral-500"></span></span>Vitória da Conquista, Bahia</p>
+      <h1 class="mt-6 text-[2.2rem] leading-[1.08] sm:text-5xl lg:text-[3.6rem] font-bold">
+        <span class="palavra"><span style="--d:.05s">Saúde</span></span>
+        <span class="palavra"><span style="--d:.12s">Vida</span></span>
+        <span class="palavra"><span style="--d:.19s" class="brilho-texto">Sudoeste</span></span><br>
+        <span class="palavra"><span style="--d:.3s">cuidando</span></span>
+        <span class="palavra"><span style="--d:.37s">de</span></span>
+        <span class="palavra"><span style="--d:.44s">você</span></span>
+        <span class="palavra"><span style="--d:.51s">e</span></span>
+        <span class="palavra"><span style="--d:.58s">da</span></span>
+        <span class="palavra"><span style="--d:.65s">sua</span></span>
+        <span class="palavra"><span style="--d:.72s">família!</span></span>
+      </h1>
+      <p class="rv mt-7 max-w-[48ch] text-base sm:text-lg text-white/80 leading-relaxed" style="--d:.5s">Atendimento personalizado e humanizado, com consulta clínica a <strong class="text-white">R$&nbsp;80,00</strong> e descontos em exames, especialistas e fisioterapia.</p>
+      <div class="rv mt-9 flex flex-col sm:flex-row gap-3" style="--d:.65s">
+        <a href="#planos" class="btn inline-flex items-center justify-center gap-2 min-h-14 px-8 rounded-full bg-coral-500 hover:bg-coral-400 text-marinho-900 font-bold text-lg shadow-[0_16px_40px_-10px_rgba(232,111,111,.7)]"><i data-lucide="heart-handshake" class="h-5 w-5" aria-hidden="true"></i>Assine agora</a>
+        <a href="#sobre" class="btn inline-flex items-center justify-center gap-2 min-h-14 px-8 rounded-full glass hover:bg-white/20 font-semibold text-lg"><i data-lucide="info" class="h-5 w-5" aria-hidden="true"></i>Saiba mais</a>
+      </div>
+      <p class="rv mt-7 flex items-center gap-2 text-sm text-white/60" style="--d:.8s"><i data-lucide="shield-check" class="h-4 w-4 shrink-0" aria-hidden="true"></i>O produto ofertado não é um plano de saúde.</p>
+    </div>
+
+    <!-- palco: foto + cartão 3D + selos flutuantes -->
+    <div id="palco" class="relative mx-auto w-full max-w-[470px] lg:max-w-none pb-10">
+      <div class="rv relative ml-auto w-[80%] aspect-[3/4] overflow-hidden shadow-[0_50px_80px_-30px_rgba(0,0,0,.8)]" style="border-radius: 999px 999px 28px 28px; --d:.3s">
+        <img src="assets/hero-medico.jpg" alt="Médico auscultando uma paciente durante a consulta" class="absolute inset-0 h-full w-full object-cover" style="object-position: 74% 50%;" width="1200" height="1600" fetchpriority="high">
+        <div class="absolute inset-0 bg-gradient-to-t from-marinho-950/60 via-transparent to-transparent"></div>
+      </div>
+
+      <div class="rv absolute left-0 sm:-left-8 lg:-left-16 bottom-[6%] w-[74%] sm:w-[60%]" style="--d:.6s">
+        <div id="tilt" class="tilt">
+          <div class="cartao relative overflow-hidden rounded-[20px] p-[6%] flex flex-col justify-between">
+            <div class="flex items-center gap-2.5 relative z-10">
+              <img src="assets/logo.png" alt="" class="rounded-full" style="height: clamp(34px, 6.4vw, 54px); width: clamp(34px, 6.4vw, 54px);">
+              <div class="font-display font-bold leading-tight text-[clamp(13px,2.2vw,19px)]">Cartão Saúde Vida</div>
+            </div>
+            <div class="relative z-10">
+              <p class="text-[clamp(12px,1.7vw,14px)] text-white/70">Titular + 3 dependentes</p>
+              <p class="font-display font-bold text-[clamp(15px,2.6vw,22px)] mt-0.5">Consulta clínica por <span class="text-coral-500">R$&nbsp;80,00</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flutua glass rounded-2xl px-4 py-3 absolute right-0 sm:-right-2 top-[6%] flex items-center gap-3" style="--d:.2s">
+        <span class="grid h-10 w-10 place-items-center rounded-full bg-coral-500 text-marinho-900"><i data-lucide="heart-pulse" class="coracao h-5 w-5" aria-hidden="true"></i></span>
+        <div><p class="font-display font-bold text-xl leading-none">17+</p><p class="text-xs text-white/75 mt-1">especialidades</p></div>
+      </div>
+      <div class="flutua glass rounded-2xl px-4 py-3 absolute right-0 -bottom-3 hidden sm:flex items-center gap-3" style="--d:1.2s">
+        <span class="grid h-10 w-10 place-items-center rounded-full bg-ceu text-marinho-900"><i data-lucide="badge-percent" class="h-5 w-5" aria-hidden="true"></i></span>
+        <div><p class="font-display font-bold text-xl leading-none">até 50% off</p><p class="text-xs text-white/75 mt-1">em exames na Clínica Conquista</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee bg-marinho-950" aria-label="Algumas especialidades e exames disponíveis: clínico geral, cardiologia, pediatria, ginecologia, dermatologia, ortopedia, psicologia, fisioterapia, hemograma, ultrassonografias, ressonância, check-up">
+  <div class="bg-coral-500 text-marinho-900 py-3.5">
+    <div class="marquee-mask overflow-hidden"><div class="marquee-trilho font-display font-bold text-lg sm:text-xl whitespace-nowrap" aria-hidden="true"><div class="flex items-center gap-7 pr-7 shrink-0"><span>Clínico geral</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Cardiologia</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Pediatria e Neonatologia</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Ginecologia e Obstetrícia</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Dermatologia</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Ortopedia</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Psicologia</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Fisioterapia</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Odontologia</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Neurologista adulto e infantil</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span></div><div class="flex items-center gap-7 pr-7 shrink-0"><span>Clínico geral</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Cardiologia</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Pediatria e Neonatologia</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Ginecologia e Obstetrícia</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Dermatologia</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Ortopedia</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Psicologia</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Fisioterapia</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Odontologia</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span><span>Neurologista adulto e infantil</span><span class="h-1.5 w-1.5 rounded-full bg-marinho-900"></span></div></div></div>
+  </div>
+  <div class="bg-marinho-900 text-white/85 py-3 border-t border-white/10">
+    <div class="marquee-mask overflow-hidden"><div class="marquee-trilho marquee-rev font-medium text-base sm:text-lg whitespace-nowrap" style="animation-duration:46s" aria-hidden="true"><div class="flex items-center gap-7 pr-7 shrink-0"><span>Hemograma completo</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Ultrassonografias</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Ressonância e tomografia</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Check-up</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Mamografia</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Eletrocardiograma</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Papanicolau</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Vitamina D</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Teste ergométrico</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Colonoscopia</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span></div><div class="flex items-center gap-7 pr-7 shrink-0"><span>Hemograma completo</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Ultrassonografias</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Ressonância e tomografia</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Check-up</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Mamografia</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Eletrocardiograma</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Papanicolau</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Vitamina D</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Teste ergométrico</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span><span>Colonoscopia</span><span class="h-1.5 w-1.5 rounded-full bg-coral-500"></span></div></div></div>
+  </div>
+</div>
+<!-- ============ SOBRE ============ -->
+<section id="sobre" class="bg-white overflow-hidden">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    <div class="relative order-2 lg:order-1 pb-16">
+      <div class="rv relative w-[78%] aspect-[4/5] rounded-[28px] overflow-hidden shadow-[0_40px_70px_-30px_rgba(5,11,61,.5)]">
+        <img src="assets/familia.jpg" alt="Duas pessoas se abraçando ao ar livre, sorrindo" class="absolute inset-0 h-full w-full object-cover" style="object-position: 38% 50%" loading="lazy">
+      </div>
+      <div class="rv absolute right-0 bottom-0 w-[52%] aspect-[4/3] rounded-[24px] overflow-hidden border-[6px] border-white shadow-[0_30px_50px_-20px_rgba(5,11,61,.5)]" style="--d:.2s">
+        <img src="assets/consulta.jpeg" alt="Médica mostrando um raio-X a um paciente" class="h-full w-full object-cover" loading="lazy">
+      </div>
+      <div class="flutua absolute left-[-6px] sm:left-6 bottom-6 rounded-2xl bg-coral-500 text-marinho-900 px-5 py-4 max-w-[210px] shadow-xl rotate-[-4deg]">
+        <i data-lucide="hand-heart" class="h-6 w-6" aria-hidden="true"></i>
+        <p class="mt-1 font-display font-bold leading-snug">A saúde é o maior patrimônio de cada pessoa.</p>
+      </div>
+    </div>
+    <div class="order-1 lg:order-2">
+      <h2 class="rv text-[1.9rem] sm:text-4xl lg:text-[2.6rem] font-bold text-marinho-900 leading-[1.12]">Cuidando de você, <span class="text-coral-700">próximo de você.</span></h2>
+      <div class="mt-8 space-y-5 text-lg text-tinta-suave leading-relaxed max-w-[58ch]">
+        <p class="rv">Na Saúde Vida Sudoeste, acreditamos que a saúde é o maior patrimônio de cada indivíduo.</p>
+        <p class="rv" style="--d:.08s">Nossa missão é oferecer um atendimento personalizado e humanizado, garantindo bem-estar e qualidade de vida para nossos associados. Com uma rede de profissionais altamente qualificados e instalações modernas, estamos comprometidos em fornecer cuidados médicos de excelência, sempre próximos a você.</p>
+        <p class="rv" style="--d:.16s">Faça parte do Saúde Vida Sudoeste e descubra um novo padrão de atenção à saúde, onde seu bem-estar é nossa prioridade.</p>
+      </div>
+      <a href="#planos" class="rv btn mt-9 inline-flex items-center gap-2 min-h-14 px-8 rounded-full bg-marinho-900 hover:bg-marinho-700 text-white font-bold text-lg shadow-[0_16px_30px_-12px_rgba(5,11,61,.7)]" style="--d:.24s">Ver planos<i data-lucide="arrow-up-right" class="h-5 w-5" aria-hidden="true"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ESPECIALIDADES (bento) ============ -->
+<section id="servicos" class="bg-papel">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+      <h2 class="rv text-[1.9rem] sm:text-4xl lg:text-[2.6rem] font-bold text-marinho-900 leading-[1.12]">Nossas<br class="hidden sm:block"> especialidades</h2>
+      <p class="rv max-w-[40ch] text-lg text-tinta-suave" style="--d:.1s">Conheça as soluções disponíveis nos nossos planos de assinatura. Toque em um bloco para ver a lista completa.</p>
+    </div>
+
+    <div class="mt-14 grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-[repeat(3,minmax(190px,auto))] gap-3 sm:gap-4">
+      <button class="tile rv col-span-2 lg:row-span-2 rounded-[28px] bg-marinho-900 text-white p-6 sm:p-9 flex flex-col justify-between on-dark" data-abre="clinico" style="--d:0s"><i data-lucide="heart-pulse" class="absolute right-6 top-[34%] h-44 w-44 text-white/[.06]" aria-hidden="true"></i>
+        <div class="flex justify-between items-start"><span class="grid h-14 w-14 place-items-center rounded-2xl bg-coral-500 text-marinho-900"><i data-lucide="stethoscope" class="h-7 w-7" aria-hidden="true"></i></span><span class="seta grid h-11 w-11 place-items-center rounded-full bg-white/15"><i data-lucide="arrow-up-right" class="h-5 w-5" aria-hidden="true"></i></span></div>
+        <div class="mt-10"><h3 class="font-display font-bold text-3xl sm:text-4xl">Clínico geral</h3><p class="mt-3 text-white/75 max-w-[38ch]">O primeiro ponto de contato no sistema de saúde: diagnóstico inicial, orientação e encaminhamento para especialistas quando necessário.</p></div>
+      </button>
+
+      <button class="tile rv rounded-[28px] bg-coral-500 text-marinho-900 p-5 sm:p-7 flex flex-col justify-between" data-abre="especialistas" style="--d:.06s">
+        <div class="flex justify-between items-start"><i data-lucide="users" class="h-8 w-8" aria-hidden="true"></i><span class="seta grid h-10 w-10 place-items-center rounded-full bg-marinho-900/15"><i data-lucide="arrow-up-right" class="h-5 w-5" aria-hidden="true"></i></span></div>
+        <div class="mt-6"><p class="num font-display font-bold text-5xl leading-none" data-count="17">17</p><h3 class="mt-2 font-display font-bold text-lg sm:text-xl leading-tight [overflow-wrap:anywhere]">Consultas especializadas</h3></div>
+      </button>
+
+      <button class="tile rv rounded-[28px] bg-white text-marinho-900 p-5 sm:p-7 flex flex-col justify-between" data-abre="usg" style="--d:.12s">
+        <div class="flex justify-between items-start"><i data-lucide="activity" class="h-8 w-8 text-coral-700" aria-hidden="true"></i><span class="seta grid h-10 w-10 place-items-center rounded-full bg-marinho-900/10"><i data-lucide="arrow-up-right" class="h-5 w-5" aria-hidden="true"></i></span></div>
+        <div class="mt-6"><p class="num font-display font-bold text-5xl leading-none" data-count="9">9</p><h3 class="mt-2 font-display font-bold text-lg sm:text-xl leading-tight [overflow-wrap:anywhere]">Ultrassonografias</h3></div>
+      </button>
+
+      <button class="tile rv rounded-[28px] bg-ceu text-marinho-900 p-5 sm:p-7 flex flex-col justify-between" data-abre="lab" style="--d:.18s">
+        <div class="flex justify-between items-start"><i data-lucide="test-tube" class="h-8 w-8" aria-hidden="true"></i><span class="seta grid h-10 w-10 place-items-center rounded-full bg-marinho-900/15"><i data-lucide="arrow-up-right" class="h-5 w-5" aria-hidden="true"></i></span></div>
+        <div class="mt-6"><p class="num font-display font-bold text-5xl leading-none"><span data-count="15">15</span>+</p><h3 class="mt-2 font-display font-bold text-lg sm:text-xl leading-tight [overflow-wrap:anywhere]">Exames de laboratório</h3></div>
+      </button>
+
+      <button class="tile rv rounded-[28px] bg-marinho-800 text-white p-5 sm:p-7 flex flex-col justify-between on-dark" data-abre="imagem" style="--d:.24s">
+        <div class="flex justify-between items-start"><i data-lucide="scan-line" class="h-8 w-8 text-coral-500" aria-hidden="true"></i><span class="seta grid h-10 w-10 place-items-center rounded-full bg-white/15"><i data-lucide="arrow-up-right" class="h-5 w-5" aria-hidden="true"></i></span></div>
+        <div class="mt-6"><h3 class="font-display font-bold text-2xl leading-tight">Ressonância e tomografia</h3><p class="mt-2 text-sm text-white/70">Diagnóstico por imagem</p></div>
+      </button>
+
+      <button class="tile rv rounded-[28px] bg-white text-marinho-900 p-5 sm:p-7 flex flex-col justify-between" data-abre="checkup" style="--d:.3s">
+        <div class="flex justify-between items-start"><i data-lucide="clipboard-check" class="h-8 w-8 text-coral-700" aria-hidden="true"></i><span class="seta grid h-10 w-10 place-items-center rounded-full bg-marinho-900/10"><i data-lucide="arrow-up-right" class="h-5 w-5" aria-hidden="true"></i></span></div>
+        <div class="mt-6"><p class="num font-display font-bold text-5xl leading-none" data-count="10">10</p><h3 class="mt-2 font-display font-bold text-lg sm:text-xl leading-tight [overflow-wrap:anywhere]">Exames de check-up</h3></div>
+      </button>
+
+      <button class="tile rv col-span-1 rounded-[28px] bg-rosa text-marinho-900 p-5 sm:p-7 flex flex-col justify-between" data-abre="fisio" style="--d:.36s">
+        <div class="flex justify-between items-start"><i data-lucide="person-standing" class="h-8 w-8 text-coral-700" aria-hidden="true"></i><span class="seta grid h-10 w-10 place-items-center rounded-full bg-marinho-900/10"><i data-lucide="arrow-up-right" class="h-5 w-5" aria-hidden="true"></i></span></div>
+        <div class="mt-6"><p class="num font-display font-bold text-5xl leading-none" data-count="6">6</p><h3 class="mt-2 font-display font-bold text-lg sm:text-xl leading-tight [overflow-wrap:anywhere]">Tipos de fisioterapia</h3></div>
+      </button>
+
+      <button class="tile rv col-span-2 rounded-[28px] bg-marinho-900 text-white p-5 sm:p-7 flex flex-col justify-between on-dark" data-abre="psico" style="--d:.42s">
+        <div class="flex justify-between items-start"><i data-lucide="brain" class="h-8 w-8 text-coral-500" aria-hidden="true"></i><span class="seta grid h-10 w-10 place-items-center rounded-full bg-white/15"><i data-lucide="arrow-up-right" class="h-5 w-5" aria-hidden="true"></i></span></div>
+        <div class="mt-6"><h3 class="font-display font-bold text-2xl leading-tight">Psicologia</h3><p class="mt-2 text-sm text-white/70 max-w-[46ch]">Terapia de casal, TCC, ansiedade, depressão, psicanálise e Terapia ABA.</p></div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VANTAGENS ============ -->
+<section id="vantagens" class="relative overflow-hidden bg-marinho-950 text-white on-dark">
+  <div class="blob" style="background:#E86F6F; width:480px; height:480px; top:-120px; left:-120px; opacity:.25" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+    <h2 class="rv text-[1.9rem] sm:text-4xl lg:text-[2.6rem] font-bold leading-[1.12]">Por que assinar?</h2>
+    <p class="rv mt-4 text-lg text-white/75" style="--d:.08s">Compare os custos reduzidos para assinantes.</p>
+
+    <div class="mt-14 grid lg:grid-cols-[1.15fr_.85fr] gap-4 sm:gap-5">
+      <div class="rv relative overflow-hidden rounded-[32px] bg-gradient-to-br from-marinho-700 to-marinho-800 border border-white/10 p-7 sm:p-12">
+        <p class="font-semibold text-white/80">Consulta clínica</p>
+        <div class="mt-6 flex flex-wrap items-end gap-x-8 gap-y-3">
+          <div><p class="text-sm text-white/60">Particular</p><p class="font-display font-bold text-4xl sm:text-5xl text-white/55"><span class="riscado">R$&nbsp;200,00</span></p></div>
+          
+          <div><p class="text-sm text-coral-400 font-semibold">Para assinantes</p><p class="font-display font-extrabold text-6xl sm:text-[5.5rem] leading-[.95] text-coral-500">R$&nbsp;<span data-count="80">80</span></p></div>
+        </div>
+        <p class="mt-8 max-w-[44ch] text-lg text-white/80">O brasileiro em média usa serviços médicos mais de 2 vezes ao ano. Com o Cartão Saúde Vida, você economiza mais de <strong class="text-white">R$&nbsp;600 por ano</strong>.</p>
+        <div class="absolute -right-16 -bottom-16 h-64 w-64 rounded-full border-[28px] border-white/5" aria-hidden="true"></div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 sm:gap-5">
+        <div class="rv rounded-[28px] bg-coral-500 text-marinho-900 p-6 flex flex-col justify-between" style="--d:.08s">
+          <p class="font-display font-bold text-4xl sm:text-5xl leading-none">até <span data-count="50">50</span>%</p>
+          <p class="mt-4 font-semibold leading-snug">de desconto em exames na Clínica Conquista com o Cartão Saúde Vida</p>
+        </div>
+        <div class="rv rounded-[28px] bg-ceu text-marinho-900 p-6 flex flex-col justify-between" style="--d:.14s">
+          <p class="font-display font-bold text-4xl sm:text-5xl leading-none">até <span data-count="30">30</span>%</p>
+          <p class="mt-4 font-semibold leading-snug">em consultas com especialistas <span class="block text-sm font-medium opacity-75">Preço normal R$&nbsp;250,00</span></p>
+        </div>
+        <div class="rv rounded-[28px] bg-white text-marinho-900 p-6 flex flex-col justify-between" style="--d:.2s">
+          <p class="font-display font-bold text-4xl sm:text-5xl leading-none">até <span data-count="50">50</span>%</p>
+          <p class="mt-4 font-semibold leading-snug">em medicações venosas</p>
+        </div>
+        <div class="rv rounded-[28px] bg-rosa text-marinho-900 p-6 flex flex-col justify-between" style="--d:.26s">
+          <p class="font-display font-bold text-4xl sm:text-5xl leading-none">até <span data-count="25">25</span>%</p>
+          <p class="mt-4 font-semibold leading-snug">em sessão com fisioterapeuta</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rv mt-4 sm:mt-5 rounded-[28px] glass p-6 sm:p-9 grid md:grid-cols-[auto_1fr_auto] gap-6 items-center">
+      <span class="grid h-16 w-16 place-items-center rounded-full bg-coral-500 text-marinho-900"><i data-lucide="hand-heart" class="h-8 w-8" aria-hidden="true"></i></span>
+      <div>
+        <h3 class="font-display font-bold text-2xl sm:text-3xl">Assistência e acolhimento para os momentos mais sensíveis</h3>
+        <p class="mt-2 text-white/80 max-w-[68ch]">Estaremos aqui para apoiar e ajudar você também nos momentos difíceis. Você pode incluir a assistência funeral familiar e ter cobertura em eventos de falecimento imprevisto por doença súbita ou acidente, com limite monetário de R$&nbsp;7.000,00.</p>
+      </div>
+      <a href="https://wa.me/5577991710040?text=Ol%C3%A1%21%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" class="btn inline-flex items-center justify-center gap-2 min-h-12 px-6 rounded-full bg-white text-marinho-900 font-bold whitespace-nowrap"><i data-lucide="message-circle" class="h-5 w-5" aria-hidden="true"></i>Pedir a tabela completa</a>
+    </div>
+    <p class="mt-4 text-sm text-white/60">Torne-se assinante e desfrute dos nossos serviços com condições especiais de pagamento. Para ver a tabela completa de benefícios e descontos, entre em contato.</p>
+  </div>
+</section>
+
+<!-- ============ PLANOS ============ -->
+<section id="planos" class="bg-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="rv text-[1.9rem] sm:text-4xl lg:text-[2.6rem] font-bold text-marinho-900 leading-[1.12]">Selecione o seu plano</h2>
+      <p class="rv mt-5 text-lg text-tinta-suave" style="--d:.08s">Assine e pague mensalmente ou escolha a cobrança anual para economizar ainda mais.</p>
+      <div class="rv mt-9 inline-flex rounded-full bg-papel p-1.5 border border-marinho-900/10" role="group" aria-label="Periodicidade da cobrança" style="--d:.14s">
+        <button type="button" data-ciclo="mensal" aria-pressed="true" class="ciclo min-h-11 px-4 sm:px-7 rounded-full font-bold text-sm sm:text-base whitespace-nowrap transition-all duration-300">Plano mensal</button>
+        <button type="button" data-ciclo="anual" aria-pressed="false" class="ciclo min-h-11 px-4 sm:px-7 rounded-full font-bold text-sm sm:text-base whitespace-nowrap transition-all duration-300">Plano anual</button>
+      </div>
+    </div>
+
+    <div class="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+      <article class="plano rv min-w-0 rounded-[28px] border-2 border-marinho-900/10 bg-white p-6 sm:p-10 flex flex-col">
+        <p class="text-sm font-semibold text-tinta-suave">Titular + 3 dependentes</p>
+        <h3 class="mt-1 text-2xl sm:text-3xl font-bold text-marinho-900">Saúde Vida Essencial</h3>
+        <p class="mt-6 font-display font-bold text-xl min-[360px]:text-2xl sm:text-3xl text-marinho-900"><span class="preco break-words">R$&nbsp;[PLACEHOLDER]</span><span class="text-base font-medium text-tinta-suave"> /<span class="per">mês</span></span></p>
+        <p class="anual-nota mt-2 hidden rounded-full bg-coral-500 text-marinho-900 text-sm font-bold px-4 py-1.5 w-fit">No plano anual você ganha 1 mensalidade!</p>
+        <ul class="mt-7 space-y-3.5 text-[17px]">
+          <li class="flex gap-3"><i data-lucide="check" class="h-6 w-6 p-1 rounded-full bg-rosa shrink-0 text-coral-700" aria-hidden="true"></i>Consultas com clínico geral por R$&nbsp;80,00</li>
+          <li class="flex gap-3"><i data-lucide="check" class="h-6 w-6 p-1 rounded-full bg-rosa shrink-0 text-coral-700" aria-hidden="true"></i>25% off em consulta com especialistas</li>
+          <li class="flex gap-3"><i data-lucide="check" class="h-6 w-6 p-1 rounded-full bg-rosa shrink-0 text-coral-700" aria-hidden="true"></i>30% off em exames na Clínica Conquista</li>
+          <li class="flex gap-3"><i data-lucide="check" class="h-6 w-6 p-1 rounded-full bg-rosa shrink-0 text-coral-700" aria-hidden="true"></i>20% off em exames de ultrassonografia</li>
+          <li class="flex gap-3"><i data-lucide="check" class="h-6 w-6 p-1 rounded-full bg-rosa shrink-0 text-coral-700" aria-hidden="true"></i>15% off em sessão de fisioterapia</li>
+          <li class="flex gap-3"><i data-lucide="check" class="h-6 w-6 p-1 rounded-full bg-rosa shrink-0 text-coral-700" aria-hidden="true"></i>20% off em exames no Laboratório LAPOP</li>
+          <li class="flex gap-3"><i data-lucide="check" class="h-6 w-6 p-1 rounded-full bg-rosa shrink-0 text-coral-700" aria-hidden="true"></i>Rede credenciada local com descontos exclusivos</li>
+          <li class="flex gap-3 text-tinta-suave"><i data-lucide="plus" class="h-6 w-6 p-1 rounded-full bg-papel shrink-0" aria-hidden="true"></i>Assistência funeral familiar, opcional: R$&nbsp;10,00/mês</li>
+        </ul>
+        <a data-plano="essencial" href="https://saudevidasudoeste.tenex.com.br/contratar/saudevidamensal?plano=0016024a-6ad0-4428-88e1-91576ef61fef" target="_blank" rel="noopener" class="cta-plano btn mt-auto inline-flex items-center justify-center min-h-14 px-7 rounded-full border-2 border-marinho-900 text-marinho-900 hover:bg-marinho-900 hover:text-white font-bold text-lg" style="margin-top:2.5rem">Assinar plano&nbsp;<span class="per-cta">mensal</span></a>
+      </article>
+
+      <div class="rv borda-viva min-w-0 rounded-[30px]" style="--d:.1s">
+        <article class="plano relative h-full rounded-[28px] bg-marinho-900 text-white on-dark p-6 sm:p-10 flex flex-col overflow-hidden">
+          <div class="anel w-[420px] h-[420px] -right-24 -top-24" aria-hidden="true"></div>
+          <div class="relative flex flex-col h-full">
+            <p class="text-sm font-semibold text-white/70 flex flex-wrap items-center gap-2">Titular + 3 dependentes <span class="rounded-full bg-coral-500 text-marinho-900 px-3 py-0.5 font-bold">Mais completo</span></p>
+            <h3 class="mt-1 text-2xl sm:text-3xl font-bold">Saúde Vida Premium</h3>
+            <p class="mt-6 font-display font-bold text-xl min-[360px]:text-2xl sm:text-3xl"><span class="preco break-words">R$&nbsp;[PLACEHOLDER]</span><span class="text-base font-medium text-white/70"> /<span class="per">mês</span></span></p>
+            <p class="anual-nota mt-2 hidden rounded-full bg-coral-500 text-marinho-900 text-sm font-bold px-4 py-1.5 w-fit">No plano anual você ganha 1 mensalidade!</p>
+            <ul class="mt-7 space-y-3.5 text-[17px]">
+              <li class="flex gap-3 font-bold"><i data-lucide="check" class="h-6 w-6 p-1 rounded-full bg-coral-500 shrink-0 text-marinho-900" aria-hidden="true"></i>4 consultas/ano com clínico geral (1 por CPF)</li>
+              <li class="flex gap-3"><i data-lucide="check" class="h-6 w-6 p-1 rounded-full bg-coral-500 shrink-0 text-marinho-900" aria-hidden="true"></i>Consultas com clínico geral por R$&nbsp;80,00</li>
+              <li class="flex gap-3"><i data-lucide="check" class="h-6 w-6 p-1 rounded-full bg-coral-500 shrink-0 text-marinho-900" aria-hidden="true"></i>30% off em consulta com especialistas</li>
+              <li class="flex gap-3"><i data-lucide="check" class="h-6 w-6 p-1 rounded-full bg-coral-500 shrink-0 text-marinho-900" aria-hidden="true"></i>25% off em sessão de fisioterapia</li>
+              <li class="flex gap-3"><i data-lucide="check" class="h-6 w-6 p-1 rounded-full bg-coral-500 shrink-0 text-marinho-900" aria-hidden="true"></i>50% off em exames na Clínica Conquista</li>
+              <li class="flex gap-3"><i data-lucide="check" class="h-6 w-6 p-1 rounded-full bg-coral-500 shrink-0 text-marinho-900" aria-hidden="true"></i>30% off em exames de ultrassonografia</li>
+              <li class="flex gap-3"><i data-lucide="check" class="h-6 w-6 p-1 rounded-full bg-coral-500 shrink-0 text-marinho-900" aria-hidden="true"></i>30% off em exames no Laboratório LAPOP</li>
+              <li class="flex gap-3"><i data-lucide="check" class="h-6 w-6 p-1 rounded-full bg-coral-500 shrink-0 text-marinho-900" aria-hidden="true"></i>Rede credenciada local com descontos exclusivos</li>
+              <li class="flex gap-3 text-white/70"><i data-lucide="plus" class="h-6 w-6 p-1 rounded-full bg-white/10 shrink-0" aria-hidden="true"></i>Assistência funeral familiar, opcional: R$&nbsp;10,00/mês</li>
+            </ul>
+            <a data-plano="premium" href="https://saudevidasudoeste.tenex.com.br/contratar/saudevidamensal?plano=38ae3c33-8144-471f-8d42-cae6a3cceb6d" target="_blank" rel="noopener" class="cta-plano btn mt-auto inline-flex items-center justify-center min-h-14 px-7 rounded-full bg-coral-500 hover:bg-coral-400 text-marinho-900 font-bold text-lg shadow-[0_16px_40px_-10px_rgba(232,111,111,.7)]" style="margin-top:2.5rem">Assinar plano&nbsp;<span class="per-cta">mensal</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <article class="plano rv mt-6 lg:mt-8 rounded-[28px] bg-ceu text-marinho-900 p-6 sm:p-10 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-center">
+      <div>
+        <p class="inline-flex items-center gap-2 text-sm font-bold"><i data-lucide="building-2" class="h-4 w-4" aria-hidden="true"></i>Para empresas</p>
+        <h3 class="mt-1 text-2xl sm:text-3xl font-bold">Empresarial Premium</h3>
+        <p class="mt-4 font-display"><span class="text-base">a partir de </span><span class="text-4xl font-bold whitespace-nowrap">R$&nbsp;29,90</span><span class="text-base"> /colaborador</span></p>
+        <p class="mt-1 font-medium">Faturado mensalmente. Mínimo 10 vidas.</p>
+        <ul class="mt-5 grid sm:grid-cols-2 gap-x-8 gap-y-2 text-[17px] font-medium">
+          <li class="flex gap-3"><i data-lucide="check" class="h-5 w-5 mt-0.5 shrink-0" aria-hidden="true"></i>30% off em consultas com clínico geral</li>
+          <li class="flex gap-3"><i data-lucide="check" class="h-5 w-5 mt-0.5 shrink-0" aria-hidden="true"></i>25% off em consulta com especialistas</li>
+          <li class="flex gap-3"><i data-lucide="check" class="h-5 w-5 mt-0.5 shrink-0" aria-hidden="true"></i>25% off em exames na Clínica Conquista</li>
+          <li class="flex gap-3"><i data-lucide="check" class="h-5 w-5 mt-0.5 shrink-0" aria-hidden="true"></i>20% off em exames no Laboratório LAPOP</li>
+        </ul>
+      </div>
+      <a href="https://wa.me/5577991710040?text=Ol%C3%A1%21%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20plano%20Empresarial%20Premium." target="_blank" rel="noopener" class="btn inline-flex items-center justify-center gap-2 min-h-14 px-8 rounded-full bg-marinho-900 text-white font-bold text-lg"><i data-lucide="message-circle" class="h-5 w-5" aria-hidden="true"></i>Fale conosco</a>
+    </article>
+
+    <p class="mt-8 flex items-center justify-center gap-2 text-tinta-suave"><i data-lucide="shield-check" class="h-5 w-5" aria-hidden="true"></i>O produto ofertado não é um plano de saúde.</p>
+  </div>
+</section>
+
+<!-- ============ REDE CREDENCIADA ============ -->
+<section id="rede" class="bg-papel overflow-hidden">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+    <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+      <div>
+        <h2 class="rv text-[1.9rem] sm:text-4xl lg:text-[2.6rem] font-bold text-marinho-900 leading-[1.12]">Venha conhecer nossa rede credenciada.</h2>
+        <p class="rv mt-4 text-xl font-display font-bold text-coral-700" style="--d:.08s">Você é sempre bem-vindo.</p>
+        <div class="mt-7 space-y-5 text-lg text-tinta-suave leading-relaxed max-w-[58ch]">
+          <p class="rv" style="--d:.12s">Descubra a excelência de nossa rede credenciada, cuidadosamente selecionada para oferecer a mais alta qualidade em cuidados de saúde e bem-estar.</p>
+          <p class="rv" style="--d:.18s">Nosso compromisso é proporcionar uma experiência única com uma estrutura moderna e sofisticada, projetada para cuidar do seu bem mais precioso: a sua saúde.</p>
+          <p class="rv" style="--d:.24s">Convidamos você a fazer uma visita e conhecer de perto o nosso parceiro clínico, entendendo na prática como podemos ajudar a cuidar de você e da sua saúde.</p>
+        </div>
+      </div>
+      <figure class="rv relative">
+        <img src="assets/clinica-conquista.jpg" alt="Fachada da Clínica Conquista, com a torre azul do laboratório LABO na entrada" class="w-full aspect-[4/3] object-cover rounded-[32px] shadow-[0_40px_70px_-30px_rgba(5,11,61,.5)]" width="1200" height="856" loading="lazy">
+        <figcaption class="flutua absolute -bottom-5 left-5 rounded-2xl bg-marinho-900 text-white px-5 py-3 font-display font-bold flex items-center gap-2"><i data-lucide="map-pin" class="h-5 w-5 text-coral-500" aria-hidden="true"></i>Clínica Conquista</figcaption>
+      </figure>
+    </div>
+
+    <div class="mt-20">
+      <h3 class="rv font-display font-bold text-2xl text-marinho-900">E mais…</h3>
+
+      <div class="rv mt-6 rounded-[28px] bg-white p-6 sm:p-8 flex flex-col sm:flex-row gap-6 sm:gap-10 items-center shadow-sm ring-1 ring-marinho-900/5">
+        <img src="assets/lapop.jpeg" alt="LAPOP — Laboratório de análises clínicas" class="h-28 w-auto shrink-0" width="323" height="120" loading="lazy">
+        <div class="max-w-[62ch]">
+          <p class="text-tinta-suave leading-relaxed">Fundado em 2020, o LAPOP é um laboratório que nasceu com a intenção de fidelizar a relação empresa e comunidade, com foco em promover um atendimento de qualidade e preço justo.</p>
+          <a href="https://lapoplaboratorio.com.br/" target="_blank" rel="noopener" class="mt-4 inline-flex items-center gap-2 min-h-11 px-5 rounded-full bg-marinho-900 text-white font-bold hover:bg-marinho-700 transition-colors">Para conhecer mais, clique aqui<i data-lucide="arrow-up-right" class="h-4 w-4" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <ul class="mt-4 sm:mt-5 grid sm:grid-cols-3 gap-4 sm:gap-5" aria-label="Outros parceiros da rede">
+        <li class="rv group">
+          <div class="aspect-[16/10] overflow-hidden rounded-[22px] bg-white ring-1 ring-marinho-900/10 transition duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_24px_40px_-20px_rgba(5,11,61,.4)]"><img src="assets/hcvp.jpeg" alt="Fachada da Santa Casa de Misericórdia de Vitória da Conquista" class="h-full w-full object-cover" loading="lazy"></div>
+          <p class="mt-3 font-display font-bold text-marinho-900 leading-snug">Santa Casa de Misericórdia de Vitória da Conquista</p>
+        </li>
+        <li class="rv group" style="--d:.08s">
+          <div class="aspect-[16/10] overflow-hidden rounded-[22px] bg-white ring-1 ring-marinho-900/10 grid place-items-center p-6 transition duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_24px_40px_-20px_rgba(5,11,61,.4)]"><img src="assets/hsvp.jpeg" alt="Logotipo do Hospital São Vicente de Paulo" class="max-h-full w-full object-contain" loading="lazy"></div>
+          <p class="mt-3 font-display font-bold text-marinho-900 leading-snug">Hospital São Vicente de Paulo</p>
+        </li>
+        <li class="rv group" style="--d:.16s">
+          <div class="aspect-[16/10] overflow-hidden rounded-[22px] ring-1 ring-marinho-900/10 grid place-items-center transition duration-300 group-hover:-translate-y-1.5 group-hover:shadow-[0_24px_40px_-20px_rgba(5,11,61,.4)]" style="background:#A8445A"><img src="assets/dimama.jpeg" alt="Logotipo da Clínica Di Mama, diagnóstico por imagem da mama" class="h-full w-full object-contain" loading="lazy"></div>
+          <p class="mt-3 font-display font-bold text-marinho-900 leading-snug">Clínica Di Mama</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section id="cta" class="relative overflow-hidden bg-coral-500 text-marinho-900">
+  <div class="anel w-[700px] h-[700px] -left-48 -top-48" style="border-color: rgba(5,11,61,.2)" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
+    <i data-lucide="heart" class="coracao mx-auto h-14 w-14 fill-marinho-900" aria-hidden="true"></i>
+    <h2 class="rv mt-6 text-[2rem] sm:text-5xl lg:text-[3.4rem] font-bold leading-[1.1]">Cuidando de você e da sua família.</h2>
+    <p class="rv mt-5 text-xl max-w-[40ch] mx-auto font-medium" style="--d:.08s">Consulta clínica a R$&nbsp;80,00 e descontos em toda a rede. Assine hoje.</p>
+    <div class="rv mt-9 flex flex-col sm:flex-row gap-3 justify-center" style="--d:.16s">
+      <a href="#planos" class="btn inline-flex items-center justify-center gap-2 min-h-14 px-9 rounded-full bg-marinho-900 text-white font-bold text-lg"><i data-lucide="heart-handshake" class="h-5 w-5" aria-hidden="true"></i>Assine agora</a>
+      <a href="https://wa.me/5577991710040?text=Ol%C3%A1%21%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" class="btn inline-flex items-center justify-center gap-2 min-h-14 px-9 rounded-full bg-white text-marinho-900 font-bold text-lg"><i data-lucide="message-circle" class="h-5 w-5" aria-hidden="true"></i>Falar no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="relative overflow-hidden bg-marinho-950 text-white on-dark">
+  <div class="anel w-[700px] h-[700px] -right-60 -bottom-72" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+    <div class="grid md:grid-cols-[1.3fr_1fr_.7fr] gap-12">
+      <div>
+        <img src="assets/logo.png" alt="Saúde Vida Sudoeste" width="64" height="64" class="h-16 w-16 rounded-full">
+        <p class="mt-5 text-white/80 max-w-[34ch]">Cuidando de você e da sua família com atendimento personalizado e humanizado.</p>
+        <a href="https://wa.me/5577991710040?text=Ol%C3%A1%21%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp" class="btn mt-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/10 hover:bg-coral-500 hover:text-marinho-900"><i data-lucide="message-circle" class="h-5 w-5" aria-hidden="true"></i></a>
+      </div>
+      <div>
+        <h2 class="font-display text-lg font-bold">Contato</h2>
+        <ul class="mt-4 space-y-4 text-white/85">
+          <li class="flex gap-3"><i data-lucide="map-pin" class="h-5 w-5 mt-0.5 shrink-0 text-coral-500" aria-hidden="true"></i>Av. Jorge Teixeira, 68, sala 206, Candeias. Vitória da Conquista, BA. CEP 45028-060</li>
+          <li><a href="tel:+5577991710040" class="flex items-center gap-3 min-h-11 hover:text-white"><i data-lucide="phone" class="h-5 w-5 shrink-0 text-coral-500" aria-hidden="true"></i>(77) 99171-0040</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-display text-lg font-bold">Navegação</h2>
+        <ul class="mt-4 space-y-1 text-white/85">
+          <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#">Página inicial</a></li>
+          <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#sobre">Sobre</a></li>
+          <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#servicos">Serviços</a></li>
+          <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#vantagens">Vantagens</a></li>
+          <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#planos">Planos</a></li>
+          <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="https://saudevidasudoeste.tenex.com.br/carteira-virtual/" target="_blank" rel="noopener">Minha Carteirinha</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-14 pt-6 border-t border-white/15 flex flex-col sm:flex-row justify-between gap-2 text-sm text-white/65">
+      <p>© Saúde Vida Sudoeste. Todos os direitos reservados.</p>
+      <p>Desenvolvido por Tenex</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5577991710040?text=Ol%C3%A1%21%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp" class="zap-pulso fixed bottom-4 right-4 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-zap text-white hover:scale-110 transition-transform"><i data-lucide="message-circle" class="h-7 w-7" aria-hidden="true"></i></a>
+
+<button id="topo-btn" type="button" aria-label="Voltar ao topo" class="fixed bottom-4 left-4 z-40 h-14 w-14 rounded-full bg-marinho-900 text-white shadow-[0_10px_30px_-8px_rgba(5,11,61,.6)] grid place-items-center">
+  <svg class="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="25" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="2.5"/><circle id="topo-arco" cx="28" cy="28" r="25" fill="none" stroke="#E86F6F" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="157.1" stroke-dashoffset="157.1"/></svg>
+  <i data-lucide="arrow-up" class="relative h-6 w-6" aria-hidden="true"></i>
+</button>
+
+<!-- ============ DIALOG (listas completas) ============ -->
+<dialog id="dlg" aria-labelledby="dlg-titulo">
+  <div class="min-h-dvh w-screen grid place-items-center p-3 sm:p-6" id="dlg-fundo">
+    <div class="painel relative w-full max-w-3xl max-h-[88dvh] overflow-y-auto rounded-[28px] bg-white p-6 sm:p-10 shadow-2xl">
+      <button id="dlg-fechar" class="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-papel hover:bg-coral-500 transition-colors" aria-label="Fechar"><i data-lucide="x" class="h-5 w-5" aria-hidden="true"></i></button>
+      <h3 id="dlg-titulo" class="pr-12 font-display font-bold text-2xl sm:text-3xl text-marinho-900"></h3>
+      <div id="dlg-corpo" class="mt-5"></div>
+      <a href="https://wa.me/5577991710040?text=Ol%C3%A1%21%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" class="btn mt-8 inline-flex items-center gap-2 min-h-12 px-6 rounded-full bg-zap text-white font-bold"><i data-lucide="message-circle" class="h-5 w-5" aria-hidden="true"></i>Perguntar pelo WhatsApp</a>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  lucide.createIcons();
+  const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* menu mobile */
+  const btn = document.getElementById('menu-btn'), menu = document.getElementById('menu-mobile');
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('hidden') === false;
+    btn.setAttribute('aria-expanded', open); btn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  });
+  menu.addEventListener('click', e => { if (e.target.closest('a')) { menu.classList.add('hidden'); btn.setAttribute('aria-expanded', 'false'); } });
+
+  /* header esconde ao descer, volta ao subir */
+  const topo = document.getElementById('topo'); let ultimo = 0;
+  addEventListener('scroll', () => {
+    const y = scrollY, desce = y > ultimo && y > 400;
+    topo.style.transform = desce && menu.classList.contains('hidden') ? 'translateY(-130%)' : 'none'; ultimo = y;
+    const prog = Math.min(y / (document.documentElement.scrollHeight - innerHeight || 1), 1);
+    document.getElementById('progresso').style.transform = 'scaleX(' + prog + ')';
+    document.getElementById('topo-btn').classList.toggle('ativo', y > 600);
+    document.getElementById('topo-arco').style.strokeDashoffset = 157.1 * (1 - prog);
+  }, { passive: true });
+
+  document.getElementById('topo-btn').addEventListener('click', () => scrollTo({ top: 0, behavior: reduz ? 'auto' : 'smooth' }));
+
+  /* revelar + contadores ao entrar na tela */
+  function conta(el) {
+    const alvo = +el.dataset.count; if (reduz) { el.textContent = alvo; return; }
+    const ini = performance.now(), dur = 1400;
+    (function passo(t) { const p = Math.min((t - ini) / dur, 1), e = 1 - Math.pow(1 - p, 3); el.textContent = Math.round(alvo * e); if (p < 1) requestAnimationFrame(passo); })(ini);
+  }
+  const io = new IntersectionObserver(es => es.forEach(en => {
+    if (!en.isIntersecting) return;
+    en.target.classList.add('in');
+    en.target.querySelectorAll('[data-count]').forEach(conta);
+    io.unobserve(en.target);
+  }), { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+  function iniciarReveals() { document.querySelectorAll('.rv').forEach(el => io.observe(el)); }
+
+  /* ---------- preloader: progresso real de carregamento ---------- */
+  (function () {
+    const pre = document.getElementById('pre'), arco = document.getElementById('pre-arco'),
+          barra = document.getElementById('pre-barra'), pct = document.getElementById('pre-pct');
+    const C = 339.3, t0 = performance.now(), minimo = reduz ? 350 : 1500;
+    let alvo = 8, mostrado = 0, saiu = false;
+    const sobe = v => { alvo = Math.max(alvo, v); };
+    const heroImg = document.querySelector('.hero img');
+    sobe(20);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => sobe(55));
+    if (heroImg) { heroImg.complete ? sobe(80) : heroImg.addEventListener('load', () => sobe(80)); heroImg.addEventListener('error', () => sobe(80)); }
+    if (document.readyState === 'complete') sobe(100); else addEventListener('load', () => sobe(100));
+    function sair() {
+      if (saiu) return; saiu = true;
+      pre.classList.add('sai');
+      setTimeout(() => { document.documentElement.classList.add('pronto'); iniciarReveals(); }, reduz ? 0 : 450);
+      setTimeout(() => { pre.classList.add('fim'); }, reduz ? 50 : 1250);
+    }
+    (function passo(t) {
+      const teto = Math.min(100, ((t - t0) / minimo) * 100);      // nunca mais rápido que o tempo mínimo
+      mostrado += (Math.min(alvo, teto) - mostrado) * .12;
+      const v = Math.min(100, mostrado + .2);
+      arco.style.strokeDashoffset = C * (1 - v / 100); barra.style.transform = 'scaleX(' + v / 100 + ')'; pct.textContent = Math.round(v);
+      if (v >= 99.4 && alvo >= 100) { pct.textContent = 100; arco.style.strokeDashoffset = 0; barra.style.transform = 'scaleX(1)'; setTimeout(sair, 250); return; }
+      if (!saiu) requestAnimationFrame(passo);
+    })(t0);
+    setTimeout(() => { alvo = 100; }, 6000);   // trava de segurança
+  })();
+
+  /* cartão 3D segue o mouse */
+  const palco = document.getElementById('palco'), tilt = document.getElementById('tilt');
+  if (palco && !reduz && matchMedia('(hover: hover)').matches) {
+    palco.addEventListener('mousemove', e => {
+      const r = palco.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      tilt.style.setProperty('--ry', (x * 18) + 'deg'); tilt.style.setProperty('--rx', (-y * 14) + 'deg');
+    });
+    palco.addEventListener('mouseleave', () => { tilt.style.setProperty('--ry', '0deg'); tilt.style.setProperty('--rx', '0deg'); });
+  }
+
+  /* listas completas */
+  const li = a => '<ul class="lista-colunas text-lg text-tinta">' + a.map(t => `<li class="py-2.5 border-b border-marinho-900/10">${t}</li>`).join('') + '</ul>';
+  const par = t => `<p class="text-lg text-tinta-suave leading-relaxed">${t}</p>`;
+  const D = {
+    clinico: ['Clínico geral', par('A conduta com o clínico geral é fundamental para um atendimento médico eficiente e eficaz. O clínico geral é o primeiro ponto de contato no sistema de saúde, desempenhando um papel crucial no diagnóstico inicial, na orientação e no encaminhamento para especialistas quando necessário. Uma boa conduta com este profissional garante um acompanhamento contínuo, prevenção de doenças e um tratamento mais personalizado e integral, promovendo a saúde e o bem-estar dos pacientes.')],
+    especialistas: ['Consultas especializadas', li(['Anestesistas','Cardiologia','Pneumologia','Ginecologia e Obstetrícia','Vascular','Endocrinologia','Nefrologia','Reumatologia','Dermatologia','Neurologista adulto e infantil','Psiquiatria','Mastologista','Cirurgião geral','Odontologia','Pediatria e Neonatologia','Gastroenterologia','Ortopedia'])],
+    usg: ['Ultrassonografias', li(['USG abdominal','USG de mamas','USG obstétrica','USG transvaginal','USG dos rins e vias urinárias','USG da tireoide','USG com Doppler','USG das articulações','USG das pernas'])],
+    lab: ['Exames de laboratório', li(['Hemograma completo','Glicemia em jejum','Colesterol total e triglicerídios','Sumário de urina','Ureia e creatinina','TGO (AST) e TGP (ALT)','Sódio e potássio','Hemoglobina glicada (HbA1c)','Proteína C-reativa (PCR)','Gasometria arterial','TSH e T4 livre','Vitamina D','Perfil reumático','Anticorpos anti-HIV','Hepatite B e C','<strong>E muito mais…</strong>'])],
+    imagem: ['Ressonância e tomografia', par('A ressonância magnética e a tomografia computadorizada são vitais para a saúde dos pacientes, pois oferecem imagens detalhadas e precisas do interior do corpo. Essas tecnologias permitem diagnósticos avançados, ajudando a identificar doenças e condições de forma precoce e precisa. Elas são fundamentais para planejar tratamentos, guiar cirurgias e monitorar a evolução de diversas patologias, garantindo um cuidado médico mais eficaz e seguro.')],
+    checkup: ['Check-up', par('Os 10 exames mais pedidos nos check-ups:') + '<div class="mt-3">' + li(['Exame de sangue','Exame de fezes e urina','Colonoscopia','Ultrassonografia de abdome total','Raio-X de tórax','Eletrocardiograma','Teste ergométrico','Mamografia','Papanicolau','Dosagem da enzima PSA']) + '</div>'],
+    fisio: ['Fisioterapia', par('Principais tipos de fisioterapia que oferecemos em nossa clínica:') + '<dl class="mt-5 grid sm:grid-cols-2 gap-x-8 gap-y-5">' + [['Fisioterapia pélvica','Dedicada ao tratamento de disfunções relacionadas à pelve, com o objetivo de restaurar funções e aliviar dores.'],['Fisioterapia orofacial (DTM)','Focada no tratamento de disfunções temporomandibulares.'],['Fisioterapia obstétrica','Trata e previne problemas associados à gravidez e ao parto.'],['Fisioterapia RPG Souchard','Foca na correção postural.'],['Liberação miofascial','Eficaz no tratamento de dor crônica e tensão muscular.'],['Fisioterapia clínica geral','Aborda variedade de condições musculoesqueléticas.']].map(([a,b]) => `<div><dt class="font-bold text-marinho-900">${a}</dt><dd class="mt-1 text-tinta-suave">${b}</dd></div>`).join('') + '</dl>'],
+    psico: ['Psicologia', par('Alguns temas abordados na Psicologia:') + '<div class="mt-3">' + li(['Terapia de casal','Terapia Cognitivo Comportamental (TCC)','Distúrbios alimentares','Depressão','Ansiedade','Pânico, medo e fobia','Psicanálise','Terapia ABA']) + '</div><div class="mt-6 rounded-2xl bg-rosa p-6"><h4 class="font-display font-bold text-xl text-marinho-900">Terapia ABA</h4><p class="mt-2 text-tinta-suave leading-relaxed">A Terapia ABA (Análise do Comportamento Aplicada) é essencial para indivíduos com autismo e outros transtornos do desenvolvimento. Ela utiliza técnicas baseadas em evidências para melhorar habilidades sociais, comunicação e comportamentos adaptativos. A ABA promove a independência e a qualidade de vida dos pacientes, ajudando-os a alcançar seu pleno potencial.</p></div>']
+  };
+  const dlg = document.getElementById('dlg');
+  document.querySelectorAll('[data-abre]').forEach(b => b.addEventListener('click', () => {
+    const [t, h] = D[b.dataset.abre];
+    document.getElementById('dlg-titulo').textContent = t; document.getElementById('dlg-corpo').innerHTML = h;
+    dlg.showModal(); document.documentElement.style.overflow = 'hidden';
+  }));
+  document.getElementById('dlg-fechar').addEventListener('click', () => dlg.close());
+  document.getElementById('dlg-fundo').addEventListener('click', e => { if (e.target.id === 'dlg-fundo') dlg.close(); });
+  dlg.addEventListener('close', () => { document.documentElement.style.overflow = ''; });
+
+  /* ciclo mensal/anual */
+  const links = {
+    mensal: { essencial: 'https://saudevidasudoeste.tenex.com.br/contratar/saudevidamensal?plano=0016024a-6ad0-4428-88e1-91576ef61fef', premium: 'https://saudevidasudoeste.tenex.com.br/contratar/saudevidamensal?plano=38ae3c33-8144-471f-8d42-cae6a3cceb6d' },
+    anual:  { essencial: 'https://saudevidasudoeste.tenex.com.br/contratar/saudevidaanual?plano=677504bd-8dd3-4868-95e3-acd8200d9e8c',  premium: 'https://saudevidasudoeste.tenex.com.br/contratar/saudevidaanual?plano=3ea199c2-c9a1-4584-89a6-c045bcef19dd' }
+  };
+  document.querySelectorAll('.ciclo').forEach(b => b.addEventListener('click', () => {
+    const c = b.dataset.ciclo;
+    document.querySelectorAll('.ciclo').forEach(x => x.setAttribute('aria-pressed', x === b));
+    document.querySelectorAll('.per').forEach(el => el.textContent = c === 'anual' ? 'ano' : 'mês');
+    document.querySelectorAll('.per-cta').forEach(el => el.textContent = c);
+    document.querySelectorAll('.anual-nota').forEach(el => el.classList.toggle('hidden', c !== 'anual'));
+    document.querySelectorAll('.cta-plano').forEach(a => a.href = links[c][a.dataset.plano]);
+  }));
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
