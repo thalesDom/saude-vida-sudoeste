@@ -616,12 +616,13 @@ tailwind.config = { theme: { extend: {
 <!-- ============ FOOTER ============ -->
 <footer class="relative overflow-hidden bg-marinho-950 text-white on-dark">
   <div class="anel w-[700px] h-[700px] -right-60 -bottom-72" aria-hidden="true"></div>
-  <div class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-12 pb-6">
-    <div class="grid md:grid-cols-[1.3fr_1fr_.7fr] gap-12">
+  <div class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-12 pb-24 lg:pb-6">
+    <div class="grid md:grid-cols-2 lg:grid-cols-[1.1fr_1fr_1.1fr] gap-10 lg:gap-12">
       <div>
         <img src="assets/logo.png" alt="Saúde Vida Sudoeste" width="64" height="64" class="h-16 w-16 rounded-full">
         <p class="mt-5 text-white/80 max-w-[34ch]">Cuidando de você e da sua família com atendimento personalizado e humanizado.</p>
-        <a href="https://wa.me/5577991710040?text=Ol%C3%A1%21%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp" class="btn mt-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/10 hover:bg-coral-500 hover:text-marinho-900"><i data-lucide="message-circle" class="h-5 w-5" aria-hidden="true"></i></a>
+        <p class="mt-2 text-sm text-white/60 max-w-[34ch]">Cartão de benefícios e descontos. Não é plano de saúde.</p>
+        <a data-msg="consultor" href="https://wa.me/5577991710040?text=Ol%C3%A1%21%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp" class="btn mt-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/10 hover:bg-coral-500 hover:text-marinho-900"><i data-lucide="message-circle" class="h-5 w-5" aria-hidden="true"></i></a>
       </div>
       <div>
         <h2 class="font-display text-lg font-bold">Contato</h2>
@@ -632,13 +633,16 @@ tailwind.config = { theme: { extend: {
       </div>
       <div>
         <h2 class="font-display text-lg font-bold">Navegação</h2>
-        <ul class="mt-4 space-y-1 text-white/85">
+        <ul class="mt-4 grid grid-cols-2 gap-x-8 text-white/85">
           <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#">Página inicial</a></li>
-          <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#sobre">Sobre</a></li>
-          <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#servicos">Serviços</a></li>
-          <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#como-funciona">Como funciona</a></li><li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#precos">Consultas e exames</a></li><li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#duvidas">Dúvidas</a></li>
           <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#planos">Planos</a></li>
-          <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="https://saudevidasudoeste.tenex.com.br/carteira-virtual/" target="_blank" rel="noopener">Minha Carteirinha</a></li>
+          <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#sobre">Sobre</a></li>
+          <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#rede">Rede credenciada</a></li>
+          <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#servicos">Serviços</a></li>
+          <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#precos">Consultas e exames</a></li>
+          <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#como-funciona">Como funciona</a></li>
+          <li><a class="inline-flex items-center min-h-11 hover:text-coral-500" href="#duvidas">Dúvidas</a></li>
+          <li class="col-span-2"><a class="inline-flex items-center gap-2 min-h-11 hover:text-coral-500" href="https://saudevidasudoeste.tenex.com.br/carteira-virtual/" target="_blank" rel="noopener"><i data-lucide="credit-card" class="h-4 w-4 text-coral-500" aria-hidden="true"></i>Minha Carteirinha</a></li>
         </ul>
       </div>
     </div>
